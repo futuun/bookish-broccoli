@@ -1,15 +1,32 @@
+'use client';
+
+import { useChat } from 'ai/react';
+import React from "react";
+import dedent from "dedent";
 import { SendHorizontal } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { IconGitHub } from "@/components/ui/icons";
-import { Message } from "@/components/ui/message";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ChatList } from '@/components/ui/chat-list';
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    api: "/api/chat",
+  });
+
+  const initialMessage = {
+    id: 'unq',
+    role: 'assistant' as const,
+    content: dedent`
+      Hello! I'm Bookish Broccoli, your helpful assistant. I can answer questions about Michał \
+      Mokijewski based on his CV. Ask me anything!
+    `,
+  }
+
   return (
-    <main className="flex h-screen flex-col items-center justify-between lg:p-24 p-4 space-y-2">
+    <main className="flex h-[calc(100dvh)] flex-col items-center justify-between lg:p-24 p-4 space-y-2">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm flex">
         <h4 className="text-sm font-medium leading-none">
           Bookish Broccoli AI
@@ -31,19 +48,14 @@ export default function Home() {
         </div>
       </div>
 
-      <ScrollArea className="flex w-full h-full max-w-5xl rounded-md border p-4">
-        <div className="grid gap-2">
-          <Message variant="ai">Ask me anything!</Message>
-          <Message variant="user">test msg</Message>
-        </div>
-      </ScrollArea>
+      <ChatList messages={[initialMessage, ...messages]} />
 
-      <div className="flex w-full max-w-5xl items-center space-x-2">
-        <Input placeholder="Aa" className="flex w-full" />
-        <Button variant="link" size="icon">
+      <form className="flex w-full max-w-5xl items-center space-x-2" onSubmit={handleSubmit}>
+        <Input placeholder="Aa" className="flex w-full text-md" value={input} onChange={handleInputChange} />
+        <Button variant="link" size="icon" type="submit">
           <SendHorizontal className="h-5 w-5" />
         </Button>
-      </div>
+      </form>
     </main>
   );
 }
