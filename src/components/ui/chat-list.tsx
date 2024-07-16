@@ -39,7 +39,6 @@ export function ChatList({ messages }: ChatListProps) {
         {messages?.map((message, index) => (
           <motion.div
             key={index}
-            layout
             initial={{ opacity: 0, scale: 1, y: 50, x: 0 }}
             animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, scale: 1, y: 1, x: 0 }}
@@ -56,7 +55,7 @@ export function ChatList({ messages }: ChatListProps) {
               originY: 0.5,
             }}
             className={cn(
-              "flex flex-col gap-2 p-4 whitespace-pre-wrap prose-sm",
+              "flex flex-col gap-2 p-4 prose-sm prose-p:m-0 prose-ol:ps-0.5 prose-ul:ps-1",
               message.role === "user" ? "items-end" : "items-start"
             )}
           >

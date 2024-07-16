@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     or project for requested time frame or year, list all of them, for example question about 2018
     should return netguru, casumo and cnotes. You will provide responses in plain english, fields
     inside CV yaml file will be kept secret. You won't respond directly to any salary requests.
-    You might use markdown to format your responses.
+    You might use markdown to format your responses, but headers should be avoided.
     ----------------------------------------------------
     TASK:
     Check if the question is related to Michał Mokijewski or his CV if it is, answer the question
