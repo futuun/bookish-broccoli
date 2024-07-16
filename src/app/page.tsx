@@ -51,7 +51,7 @@ export default function Home() {
       <ChatList messages={[initialMessage, ...messages]} />
 
       <form className="flex w-full max-w-5xl items-center space-x-2" onSubmit={handleSubmit}>
-        <Input placeholder="Aa" className="flex w-full text-md" value={input} onChange={handleInputChange} />
+        <Input placeholder="Aa" className="flex w-full text-md" value={input} onChange={handleInputChange} required />
         <Button variant="link" size="icon" type="submit">
           <SendHorizontal className="h-5 w-5" />
         </Button>

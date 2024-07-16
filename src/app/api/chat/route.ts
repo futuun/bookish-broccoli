@@ -1,12 +1,20 @@
+import Mixpanel from 'mixpanel'
 import dedent from "dedent";
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { getCV } from '../getCV';
 
 export const maxDuration = 30;
+const mixpanel = Mixpanel.init(process.env.MIXPANEL_PROJECT_TOKEN as string);
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
+
+  mixpanel.track('Message Send', messages[messages.length - 1]);
+  const previousResponse = messages[messages.length - 2];
+  if (previousResponse?.role === 'assistant') {
+    mixpanel.track('Assistant Response', previousResponse);
+  }
 
   const cv = await getCV();
 
