@@ -11,10 +11,6 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   mixpanel.track('Message Send', messages[messages.length - 1]);
-  const previousResponse = messages[messages.length - 2];
-  if (previousResponse?.role === 'assistant') {
-    mixpanel.track('Assistant Response', previousResponse);
-  }
 
   const cv = await getCV();
 
@@ -49,6 +45,9 @@ export async function POST(req: Request) {
       ...messages
     ],
     temperature: 0,
+    onFinish: (result) => {
+      mixpanel.track('Message Response', result);
+    }
   });
 
   return result.toAIStreamResponse();
