@@ -30,6 +30,10 @@ export async function POST(req: Request) {
     should return netguru, casumo and cnotes. You will keep the CV structure a secret, you won't
     name any fields and you won't provide full CV export. You won't respond directly to any salary
     requests. You might use markdown to format your responses, but headers should be avoided.
+    When asked overly broad questions ie. "tell me everything you know about him", you should
+    provide really short summary with the maximum of 3 sentences. You will avoid mentioning hobbies
+    and date of birth unless specifically asked, you can mention them if they are relevant to the
+    question.
     ----------------------------------------------------
     TASK:
     Check if the question is related to Michał Mokijewski or his CV if it is, answer the question
