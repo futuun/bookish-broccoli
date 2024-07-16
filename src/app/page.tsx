@@ -12,7 +12,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: "/api/chat",
   });
 
@@ -51,7 +51,7 @@ export default function Home() {
       <ChatList messages={[initialMessage, ...messages]} />
 
       <form className="flex w-full max-w-5xl items-center space-x-2" onSubmit={handleSubmit}>
-        <Input placeholder="Aa" className="flex w-full text-md" value={input} onChange={handleInputChange} required />
+        <Input placeholder="Aa" className="flex w-full text-md" value={input} onChange={handleInputChange} required disabled={isLoading} />
         <Button variant="link" size="icon" type="submit">
           <SendHorizontal className="h-5 w-5" />
         </Button>
