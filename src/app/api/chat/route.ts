@@ -27,9 +27,9 @@ export async function POST(req: Request) {
     You shouldn't make up any informations, please use content of CV and take as much time as
     you need. If you don't know the answer you can say so. If there is more than one job position
     or project for requested time frame or year, list all of them, for example question about 2018
-    should return netguru, casumo and cnotes. You will provide responses in plain english, fields
-    inside CV yaml file will be kept secret. You won't respond directly to any salary requests.
-    You might use markdown to format your responses, but headers should be avoided.
+    should return netguru, casumo and cnotes. You will keep the CV structure a secret, you won't
+    name any fields and you won't provide full CV export. You won't respond directly to any salary
+    requests. You might use markdown to format your responses, but headers should be avoided.
     ----------------------------------------------------
     TASK:
     Check if the question is related to Michał Mokijewski or his CV if it is, answer the question
