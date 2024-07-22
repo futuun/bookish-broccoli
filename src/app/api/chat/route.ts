@@ -39,7 +39,7 @@ export async function POST(req: Request) {
   `;
 
   const result = await streamText({
-    model: openai('gpt-4o'),
+    model: openai('gpt-4o-mini'),
     messages: [
       { role: 'system', content: systemPrompt },
       ...messages
